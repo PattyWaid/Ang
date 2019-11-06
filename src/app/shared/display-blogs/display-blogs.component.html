@@ -1,0 +1,22 @@
+
+<div>
+<div class="card" *ngFor="let recipe of recipes"
+(click) = "onRecipeClicked(recipe)"
+style="width: 18rem; cursor: pointer;" 
+[ngStyle] = "{'display': selectedRecipe ? 'none' : 'inline-block'}">
+
+    <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive">
+    <div class="card-body">
+        <h5 class="card-title"><b>{{ recipe.name }}</b></h5>
+        <p class="card-text" [innerHTML] = "recipe.description | shorten: 100"></p>
+
+        <div>
+            <em>-{{ recipe.user | subtext }}</em>
+        </div>
+    </div>
+
+</div>
+<app-blog-item *ngIf = "selectedRecipe"
+(closeBox) = "onCloseReceived()"
+[singleRecipe] = "selectedRecipe"></app-blog-item>
+
