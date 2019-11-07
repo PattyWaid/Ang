@@ -32,10 +32,8 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label for="description">Description</label>
-             <!-- <textarea type="text" id="description" class="form-control" formControlName="description"
-              rows="6"></textarea> -->
               <quill-editor
-              [style]="{'height':'320px'}"
+              [styles] = "editorStyle"
               formControlName="description">
               </quill-editor>
           </div>

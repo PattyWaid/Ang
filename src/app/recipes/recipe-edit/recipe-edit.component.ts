@@ -20,7 +20,9 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
   category: string[] = ['Automobiles', 'Animations', 'Technology'];
-
+  editorStyle = {
+    height: '300px',
+  }
 
   
   constructor(

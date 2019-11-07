@@ -1,8 +1,10 @@
-input.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-quill-editor{
-  min-height:300px;
+quill-editor.ng-invalid.ng-touched > div.ql-container.ql-snow {
+  border: 1px solid red;
 }
+
+
+ 
