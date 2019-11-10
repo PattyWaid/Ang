@@ -11,6 +11,8 @@ import { BlogItem } from './display-blogs/blog-item/bolg-item.compnent';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from '../auth/auth.module';
 import { SubTextPipe } from './subtext.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ReplyComponent } from './display-blogs/blog-item/reply/reply.component';
 
 @NgModule({
     declarations: [
@@ -21,9 +23,10 @@ import { SubTextPipe } from './subtext.pipe';
         DropdownDirective,
         DisplayBlogs,
         BlogItem,
-        SubTextPipe
+        SubTextPipe,
+        ReplyComponent
     ],
-    imports: [CommonModule],
+    imports: [CommonModule, ReactiveFormsModule],
     exports: [
         AlertComponent,
         LoadingSpinner,
@@ -33,7 +36,8 @@ import { SubTextPipe } from './subtext.pipe';
         CommonModule,
         DisplayBlogs,
         BlogItem,
-        SubTextPipe
+        SubTextPipe,
+        ReplyComponent
     ],
     entryComponents: [
         AlertComponent

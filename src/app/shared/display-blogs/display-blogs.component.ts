@@ -27,6 +27,7 @@ export class DisplayBlogs implements OnInit, DoCheck, OnDestroy {
         private router: Router) { }
 
     ngOnInit() {
+        this.recipes = this.recipeService.getRecipes();
         this.subscription = this.dataStorage.fetchRecipes().subscribe(
             params => {
                 if(params){
@@ -155,7 +156,7 @@ export class DisplayBlogs implements OnInit, DoCheck, OnDestroy {
     ngOnDestroy() {
         this.onCloseReceived();
         this.subscription.unsubscribe();
-        if(this.routeSub != null) {
+        if(this.routeSub != null) { 
             this.routeSub.unsubscribe();
         }
         

@@ -7,7 +7,8 @@ import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import * as shoppingListActions from '../shopping-list/Store/shopping-list.action';
 import * as rootAppReducer from '../Store/root-app.reducer';
-import { findIndex, find } from 'rxjs/operators';
+import { Comments } from '../shared/comments.model';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Injectable()
 export class RecipeService {
@@ -41,9 +42,6 @@ export class RecipeService {
     }
   }
 
-  
-
-  
 
   getRecipeCount() {
    return this.count;
@@ -52,8 +50,6 @@ export class RecipeService {
   setRecipesCount(idCount: number) {
     this.count = idCount;
   }
-
-  
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.store.dispatch(new shoppingListActions.AddIngredients(ingredients));
@@ -69,13 +65,12 @@ export class RecipeService {
     for(const rec in this.recipes){
       if(this.recipes[rec].recId === index){
         this.recipes[this.recipes.indexOf(this.recipes[rec])] = newRecipe;
-        //return this.recipes[this.recipes.indexOf(this.recipes[rec])];
       }
     }
-    //this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
   }
 
+  
   deleteRecipe(recIndex: number) {
     for(const rec in this.recipes){
       if(this.recipes[rec].recId === recIndex){
@@ -84,8 +79,6 @@ export class RecipeService {
       }
     }
     this.recipesChanged.next(this.recipes.slice());
-   // this.recipes.splice(index, 1);
-   // this.recipesChanged.next(this.recipes.slice());
   }
 
 }

@@ -68,8 +68,10 @@ export class AuthFormService {
 
     getLoginData() {
 
-        const data = JSON.parse(localStorage.getItem('userData'))
+        const data = JSON.parse(localStorage.getItem('userData'));
+        if(data) {
         return data.email;
+        }
         
     }
 
@@ -155,14 +157,14 @@ export class AuthFormService {
             }));
             //this.user.next(loadUser);
             const expirationDuration = new Date(userData._tokenExpirationDate)
-            .getTime() - new Date().getTime()
+            .getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
         }
     }
 
     autoLogout(expirationDuration: number) {
         this.expirationTimer = setTimeout(() =>
-            this.logout()
+            this.autoLogin()
             ,expirationDuration);
 
     }

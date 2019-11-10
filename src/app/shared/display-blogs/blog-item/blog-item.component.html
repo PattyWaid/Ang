@@ -1,20 +1,65 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div>
-    <a style="cursor: pointer;" (click) = "onClose()"> X </a>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div>
-                <img [src]="singleRecipe.imagePath" alt="{{ singleRecipe.name }}" class="img-responsive">
-                
+        <a style="cursor: pointer;" (click)="onClose()"> X </a>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div>
+                    <img [src]="singleRecipe.imagePath" alt="{{ singleRecipe.name }}" class="img-responsive">
+
                     <h5 class="card-title"><b>{{ singleRecipe.name }}</b></h5>
-                    <p class="card-text" [innerHTML] = "singleRecipe.description"></p>
+                    <p class="card-text" [innerHTML]="singleRecipe.description"></p>
 
                     <em>- {{ singleRecipe.user }}</em>
-                
-            </div>
 
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
-    
+    <hr>
+    <div class="jumbotron">
+        <div class="row">
+                <label>Comments:</label>
+            <div class="col-xs-12">
+                <form [formGroup]="commentsForm" (ngSubmit)="onSubmit()">
+                    
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <input type="text" id="name" formControlName="commentText" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                            <button type="submit" class="btn btn-success" >+</button> &nbsp;
+                            <!-- <button type="button" class="btn btn-danger" (click)="deleteComment()">X</button> -->
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12">
+            <ul class="list-group"
+            *ngFor = "let comment of singleRecipe.comments; let i = index">
+                    <li class="list-group-item">{{comment.commentText}}
+                            <span class="badge">
+                                    {{comment.commentUser}}
+                                </span>
+                    <ul class="list-group"
+                      *ngFor = "let reply of  comment.commentReply">
+                            <li class="list-group-item">{{ reply.replyText}} <span class="badge">{{ reply.replyUser }}</span></li>
+                    </ul>       
+                        <app-reply
+                        (replyTriggered) = "onReplyData(i, $event)"
+                        *ngIf = "commentClicked === i"
+                        [replyEl] = "i"></app-reply>
+                                <button
+                                (click) = "onReplyClicked(i)"
+                                type="button" class="btn btn-success">
+                                Reply
+                                </button>
+                    </li>
+            </ul>        
+            
+            
+        </div>
+        
+    </div>
+
 </div>

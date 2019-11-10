@@ -1,0 +1,11 @@
+<form [formGroup]="replyForm" (ngSubmit)="onSubmit()">
+    <div class="col-xs-8">
+        <div class="form-group">
+            <input type="text" id="name" formControlName="replyText" class="form-control">
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <button type="submit" class="btn btn-success">+</button> &nbsp;
+        <!-- <button type="button" class="btn btn-danger" (click)="deleteComment()">X</button> -->
+    </div>
+</form>

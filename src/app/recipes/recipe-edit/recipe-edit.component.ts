@@ -5,6 +5,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { AuthFormService } from 'src/app/auth/auth-form.service';
+import { Comments } from 'src/app/shared/comments.model';
 
 
 @Component({
@@ -92,6 +93,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeCategory = 'Automobiles';
     let recipeUser = this.authService.getLoginData();
     let recipeIngredients = new FormArray([]);
+    let recipeComments = [];
 
 
     if (this.editMode) {
@@ -102,6 +104,7 @@ export class RecipeEditComponent implements OnInit {
       recipeDescription = recipe.description;
       recipeCategory = recipe.category;
       recipeUser = this.authService.getLoginData();
+      recipeComments = recipe.comments;
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(
@@ -123,7 +126,8 @@ export class RecipeEditComponent implements OnInit {
         description: new FormControl(recipeDescription, Validators.required),
         category: new FormControl(recipeCategory,Validators.required),
         user: new FormControl(recipeUser),
-        ingredients: recipeIngredients
+        ingredients: recipeIngredients,
+        comments: new FormControl(recipeComments)
       });
 
       
